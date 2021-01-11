@@ -1,10 +1,31 @@
-fn main() {
-    let width1 = 30;
-    let height1 = 50;
-
-    println!("The area is {}", area(width1, height1));
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
 }
 
-fn area(width: u32, height: u32) -> u32 {
-    width * height
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.height > other.height && self.width > other.width
+    }
+}
+
+fn main() {
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    let rect2 = Rectangle {
+        width: 15,
+        height: 30,
+    };
+
+    println!("The area is {}", rect1.area());
+    println!("The rectangle is {:?}", rect1);
+    println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
 }
